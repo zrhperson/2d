@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>钟表</title>
+	</head>
+	<style type="text/css">
+		.block{
+			width: 200px;height: 200px;
+			border: 1px solid #aaa;
+			background: radial-gradient(#fff,#ddd);
+			box-shadow: 0 0 5px #000;
+			margin: auto;
+			position: fixed;
+			left: 0;right: 0;top: 0;bottom: 0;
+			border-radius: 50%;
+		}
+	</style>
+	<body>
+		<div class="block"></div>
+	</body>
+	<script>
+		window.onload=function(){
+			var clock=document.querySelector(".block");
+			function creatMark(){
+				var widths,heights,bgcolors;
+				for(var i=0;i<60;i++){
+					if(i%5==0){
+						widths=3;
+						heights=10;
+						bgcolors="black";
+					}else{
+						widths=2;
+						heights=6;
+						bgcolors="#aaa";
+					}
+					var div=document.createElement("div");
+					div.style.cssText="width:"+widths+"px;height:"+heights+"px;background:"+bgcolors+";position:absolute;top:0;left:"+(200-widths)/2+"px;";
+					div.style.transformOrigin="center 100px";
+					div.style.transform="rotate("+i*6+"deg)";
+					clock.appendChild(div);
+				}
+			}
+			function creatPointer(w,h,c,a){
+				var div=document.createElement("div");
+				div.style.cssText="width:"+w+"px;height:"+h+"px;background:"+c+";position:absolute;top:"+(100-h)+"px;left:"+(200-w)/2+"px;";
+				div.style.transformOrigin="center bottom";
+				div.style.transform="rotate("+a+"deg)";
+				clock.appendChild(div);
+				return  div;
+			}
+			creatMark();
+			var times=new Date();
+			var hours=times.getHours();
+			var min=times.getMinutes();
+			var sec=times.getSeconds();
+			var h=creatPointer(4,30,"#000",hours*30+min/2);
+			var m=creatPointer(3,50,"#000",min*6);
+			var s=creatPointer(2,70,"#000",sec*6);
+			var t=setInterval(blocktime,1000);
+			function blocktime(){
+				var times=new Date();
+				var hours=times.getHours();
+				var min=times.getMinutes();
+				var sec=times.getSeconds();
+				h.style.transform="rotate("+(hours*30+min/2)+"deg)";
+				m.style.transform="rotate("+min*6+"deg)";
+				s.style.transform="rotate("+sec*6+"deg)";
+			}
+		}
+	</script>
+</html>
