@@ -194,10 +194,6 @@ div.eye_right {
 #mouth {
 	width: 240px;
 	height: 500px;
-	border-bottom: 3px solid #333;
-	border-radius: 120px;
-	-webkit-border-radius: 120px;
-	-moz-border-radius: 120px;
 	position: absolute;
 	top: -263px;
 	left: 36px;
@@ -224,7 +220,7 @@ x:indeterminate {
 	position: relative;
 	width: 170px;
 	height: 150px;
-	-moz-border-radius: 85px;
+	border-radius: 85px;
 	border: 3px solid #000;
 	background: #FFF;
 	z-index: 11;
